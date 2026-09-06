@@ -1,0 +1,6 @@
+<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Devsoke icon">
+  <rect x="32" y="32" width="448" height="448" rx="104" fill="#5D244F"/>
+  <path d="M64 104C128 54 230 28 338 46C400 56 452 92 480 130V32H32V196C40 158 50 124 64 104Z" fill="#9D3C5C" fill-opacity="0.72"/>
+  <path d="M210 154L366 256L210 358" stroke="#F4F4F6" stroke-width="72" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M134 300H244L198 368H88L134 300Z" fill="#D36A8F"/>
+</svg>
