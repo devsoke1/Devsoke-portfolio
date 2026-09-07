@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-12">
           <div className="space-y-4">
             <Link href="/" className="inline-block py-1" aria-label="Devsoke home">
-              <BrandMark className="h-9 w-auto" decorative />
+              <BrandMark asset="footer" className="h-9 w-auto" decorative />
             </Link>
             <p className="max-w-sm text-xs leading-relaxed text-gray-400">
               Software websites, AI workflows, ecommerce systems, and dashboards

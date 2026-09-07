@@ -42,6 +42,32 @@ export const metadata: Metadata = {
     description:
       "Conversion-focused websites, software products, AI workflows, and dashboards.",
   },
+  icons: {
+    icon: [
+      {
+        url: "/brand/devsoke-favicon-16.png",
+        type: "image/png",
+        sizes: "16x16",
+      },
+      {
+        url: "/brand/devsoke-favicon-32.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+      {
+        url: "/brand/devsoke-favicon-48.png",
+        type: "image/png",
+        sizes: "48x48",
+      },
+    ],
+    apple: [
+      {
+        url: "/apple-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

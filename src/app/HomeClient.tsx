@@ -61,6 +61,7 @@ export default function HomeClient({
     BarChart3,
     Search,
   };
+  const mobileServices = portfolioServices.slice(0, 4);
 
   // Mock Dashboard Demonstration Datasets
   const metrics = {
@@ -98,18 +99,24 @@ export default function HomeClient({
       <div className="absolute inset-0 bg-grid-blueprint bg-radial-fade pointer-events-none z-0" />
 
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[85vh] flex items-center justify-center pt-28 sm:pt-36 md:pt-40 pb-12 sm:pb-16 overflow-hidden z-10">
+      <section className="relative isolate min-h-0 flex items-center justify-center pt-28 sm:pt-36 md:pt-40 pb-12 sm:pb-16 overflow-hidden z-10 lg:min-h-[85vh]">
         {/* Ambient Stage Lighting Glows */}
-        <div className="absolute top-1/4 -left-20 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-brand-plum/15 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 -right-20 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-brand-rose/15 blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 -left-20 z-0 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-brand-plum/15 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 -right-20 z-0 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-brand-rose/15 blur-3xl pointer-events-none" />
 
-        <div className="site-container py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center z-10">
+        <div className="site-container relative z-20 py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Keep the decorative scene visible without competing with the mobile/tablet copy. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-10 bg-brand-bg/20 lg:hidden"
+          />
+
           {/* Left Column: Heading, description, actions, and architecture highlights */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-5 sm:space-y-6 text-center lg:text-left"
+            className="relative z-20 space-y-5 sm:space-y-6 text-center lg:text-left"
           >
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading leading-[1.12] tracking-tight text-brand-fg">
               Software Websites & Apps <br className="hidden sm:inline" />
@@ -169,7 +176,7 @@ export default function HomeClient({
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="w-full h-full flex items-center justify-center relative"
+            className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center lg:pointer-events-auto lg:relative lg:inset-auto lg:z-auto lg:w-full lg:h-full"
           >
             <Canvas3D />
           </motion.div>
@@ -188,7 +195,53 @@ export default function HomeClient({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-2 gap-3 sm:hidden">
+            {mobileServices.map((srv, idx) => {
+              const Icon = serviceIconMap[srv.homeIcon];
+
+              return (
+                <motion.div
+                  key={`mobile-${srv.slug}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.06 }}
+                  className="min-w-0"
+                >
+                  <Link
+                    href={getServiceUrl(srv)}
+                    aria-label={`View ${srv.homeTitle} service`}
+                    className="surface-card surface-card-hover flex h-full min-h-[148px] flex-col justify-between gap-4 rounded-2xl p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-rose-text"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="w-fit rounded-xl border border-brand-rose/30 bg-brand-rose/15 p-2.5 shadow-sm shadow-brand-rose/20">
+                        <Icon className="text-brand-rose-text" size={20} aria-hidden="true" />
+                      </div>
+                      <ArrowRight
+                        size={15}
+                        aria-hidden="true"
+                        className="mt-2 shrink-0 text-brand-rose-text"
+                      />
+                    </div>
+                    <h3 className="min-w-0 text-sm font-bold font-heading leading-snug text-brand-fg">
+                      {srv.homeTitle}
+                    </h3>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="sm:hidden">
+            <Link
+              href="/services"
+              className="btn-secondary mt-4 w-full py-3.5 text-xs focus-visible:ring-2 focus-visible:ring-brand-rose-text"
+            >
+              View All Services <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
+
+          <div className="hidden grid-cols-1 gap-5 sm:grid sm:gap-6 md:grid-cols-3">
             {portfolioServices.map((srv, idx) => {
               const Icon = serviceIconMap[srv.homeIcon];
 

@@ -82,7 +82,7 @@ export default function AdminShell({ admin, active, children }: AdminShellProps)
         <div className="p-5 sm:p-6">
           <div className="flex items-center space-x-3 pb-6 border-b border-brand-rose/15 mb-6">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-brand-rose/25 bg-brand-plum shadow-md shadow-brand-rose/10">
-              <BrandMark variant="icon" className="h-7 w-7" decorative />
+              <BrandMark variant="icon" className="h-7 w-auto" decorative />
             </div>
             <div>
               <h3 className="text-sm font-bold font-heading text-brand-fg">Devsoke Admin</h3>
